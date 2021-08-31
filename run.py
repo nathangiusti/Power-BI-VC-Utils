@@ -2,6 +2,7 @@ import zipfile
 import json
 import sys
 
+print(sys.argv)
 
 for i in range(1, len(sys.argv)):
     if sys.argv[i].endswith('.json'):
@@ -20,7 +21,6 @@ for i in range(1, len(sys.argv)):
                     if key in visual_container.keys():
                         visual_container[key] = json.loads(visual_container[key])
         output_path = sys.argv[i][:-5] + '.json'
-        print(output_path)
-        print(data)
         with open(output_path, "w") as f:
             json.dump(data, f, indent=4)
+        print('Pretty Printed {}'.format(sys.argv[i]))
