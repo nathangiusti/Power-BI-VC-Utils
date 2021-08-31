@@ -1,8 +1,8 @@
-name: Power BI VC Utils
-description: Prepares Power BI assets for VC.
+name: 'Power BI VC Utils'
+description: 'Prepares Power BI assets for VC.'
 inputs:
   files:
-    description: Assets to format
+    description: 'Assets to format'
     required: true
 runs:
   using: 'docker'
@@ -10,4 +10,3 @@ runs:
   args:
     - ${{ inputs.files }}
   
-
