@@ -1,1 +1,31 @@
+name: Power BI VC Utils
+description: Prepares Power BI assets for VC.
+inputs:
+  files:
+    description: Assets to format
+    required: true
+runs:
+  runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.files }}
+  Reformat-Artifacts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
+      - name: setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8 #install the python needed
+      - id: files
+        uses: jitterbit/get-changed-files@v1
+      - name: execute py script # run the run.py to get the latest data
+        run: |
+          python run.py ${{ steps.files.outputs.all }}
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: readme update
 
