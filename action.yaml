@@ -1,5 +1,6 @@
 name: 'Power BI VC Utils'
 description: 'Prepares Power BI assets for VC.'
+author: 'Nathan Giusti'
 inputs:
   files:
     description: 'Assets to format'
