@@ -1,2 +1,2 @@
 #!/bin/sh
-python run.py $1
+python .github/scripts/run.py $1
