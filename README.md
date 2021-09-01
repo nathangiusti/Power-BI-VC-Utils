@@ -33,3 +33,8 @@ jobs:
           commit_message: Reformatted files for VC
 ~~~~
 
+NOTE:
+
+In order for this action to work you must copy run.py into .github/scripts
+
+If anyone knows how to get docker to run the python script in the action, please reach out. 
