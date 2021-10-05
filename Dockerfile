@@ -5,4 +5,4 @@ FROM python:latest
 COPY . .
 
 # Code file to execute when the docker container starts up (`entrypoint.sh`)
-CMD [ "python", "src/run.py", "$1" ]
+CMD [ "python", "/src/run.py", "$1" ]
