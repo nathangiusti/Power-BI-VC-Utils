@@ -1,3 +1,4 @@
-
 #!/bin/sh
-python .github/scripts/run.py $1
+pip install --upgrade pip
+pip install zipfile
+python run.py $1
