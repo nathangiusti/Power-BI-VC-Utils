@@ -5,7 +5,7 @@ import os.path
 
 for file in sys.argv:
     if file.endswith('.json') and os.path.exists(file):
-        with open(file, 'r') as f:
+        with open(file, 'r', encoding='utf-8-sig') as f:
             json_str = json.dumps(json.load(f), indent=4)
         with open(file, 'w') as f:
             f.write(json_str)
