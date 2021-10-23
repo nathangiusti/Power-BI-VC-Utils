@@ -8,7 +8,7 @@ For all .json (dataflow) files, pretty prints
 
 For all .pbix report files deserializes and pretty prints report json.
 
-Tales as input files, a space delineated list of json and PBIX files to iterate over. 
+Talkes as input files, a space delineated list of json and PBIX files to iterate over. 
 
 Example use:
 	
@@ -25,7 +25,7 @@ jobs:
       - id: files
         uses: jitterbit/get-changed-files@v1
       - name: Power BI VC Utils
-        uses: nathangiusti/Power-BI-VC-Utils@v1.0
+        uses: nathangiusti/Power-BI-VC-Utils@v1.2
         with:
           files: ${{ steps.files.outputs.all }}
       - uses: stefanzweifel/git-auto-commit-action@v4
