@@ -39,12 +39,12 @@ for file in sys.argv:
                     if key in visual_container.keys():
                         visual_container[key] = json.loads(visual_container[key])
             section_name = section['displayName'].translate({ord(x): '_' for x in ILLEGAL_PATH_CHARACTERS})
-            output_path = pbix_file_name + '\\' + section_name + '.json'
+            output_path = pbix_file_name + '/' + section_name + '.json'
             with open(output_path, "w") as f:
                 json.dump(section, f, indent=4)
 
         # Dump rest of the PBIX JSON
-        output_path = pbix_file_name + '\\' + pbix_file_name + '.json'
+        output_path = pbix_file_name + '/' + pbix_file_name + '.json'
         with open(output_path, "w") as f:
             json.dump(data, f, indent=4)
 
