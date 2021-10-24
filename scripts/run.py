@@ -44,7 +44,9 @@ for file in sys.argv:
                 json.dump(section, f, indent=4)
 
         # Dump rest of the PBIX JSON
+        print(pbix_file_name)
         output_path_data = "/".join([pbix_file_name, pbix_file_name + '.json'])
+        print(output_path_data)
         with open(output_path_data, "w") as f:
             json.dump(data, f, indent=4)
 
