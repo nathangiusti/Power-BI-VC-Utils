@@ -17,12 +17,12 @@ for file in sys.argv:
 
     if file.endswith('.pbix') and os.path.exists(file):
         # Get the PBIX file name to use as the directory name
-        pbix_file_name = file[:-5]
+        json_dir_path = file[:-5]
 
         # Create the directory if it doesn't exist. Remove all existing files from directory if it does
-        os.makedirs(pbix_file_name, exist_ok=True)
-        for f in os.listdir(pbix_file_name):
-            os.remove(os.path.join(pbix_file_name, f))
+        os.makedirs(json_dir_path, exist_ok=True)
+        for f in os.listdir(json_dir_path):
+            os.remove(os.path.join(json_dir_path, f))
 
         # PBIX is just a zip with utf-16-le encoding
         zf = zipfile.ZipFile(file)
@@ -39,15 +39,13 @@ for file in sys.argv:
                     if key in visual_container.keys():
                         visual_container[key] = json.loads(visual_container[key])
             section_name = section['displayName'].translate({ord(x): '_' for x in ILLEGAL_PATH_CHARACTERS})
-            output_path = pbix_file_name + '/' + section_name + '.json'
+            output_path = json_dir_path + '/' + section_name + '.json'
             with open(output_path, "w") as f:
                 json.dump(section, f, indent=4)
 
         # Dump rest of the PBIX JSON
-        print(pbix_file_name)
-        output_path_data = "/".join([pbix_file_name, pbix_file_name + '.json'])
-        print(output_path_data)
-        with open(output_path_data, "w") as f:
+        file_name = os.path.basename(file)[:-5]
+        with open(json_dir_path + '/' + file_name + '.json', "w") as f:
             json.dump(data, f, indent=4)
 
         print('Pretty Printed {}'.format(file))
