@@ -7,8 +7,17 @@ Takes in a list of files.
 For all .json (dataflow) files, pretty prints 
 
 For all .pbix report files deserializes and pretty prints report json.
+- Folder is created with the name of the PBIX file
+- For each section, a file is created in the new folder with the section JSON
+- The rest of the report is put in a separate json file with the same name as the folder/pbix
 
-Talkes as input files, a space delineated list of json and PBIX files to iterate over. 
+For a file "ExampleReport.pbix" with "Section 1", "Section 2", and "Section 3" will create a folder called "ExampleReport" with 4 files inside:
+- ExampleReport.json
+- Section_1.json
+- Section_2.json
+- Section_3.json
+
+Takes as input files, a space delineated list of json and PBIX files to iterate over. 
 
 Example use:
 	
