@@ -4,7 +4,7 @@ import sys
 import os.path
 
 # The characters are illegal in file names and will be replaced with _
-ILLEGAL_PATH_CHARACTERS = {'<', '>', ':', '/', '\\', '|', '?', '*', ' '}
+ILLEGAL_PATH_CHARACTERS = {'<', '>', ':', '/', '\\', '|', '?', '*', ' ', '(', ')'}
 
 for file in sys.argv:
     # For JSON files, just read and pretty print
