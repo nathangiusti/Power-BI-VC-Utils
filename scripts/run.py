@@ -4,7 +4,7 @@ import sys
 import os.path
 
 # The characters are illegal in file names and will be replaced with _
-ILLEGAL_PATH_CHARACTERS = {'<', '>', ':', '/', '\\', '|', '?', '*', ' ', '(', ')'}
+ILLEGAL_PATH_CHARACTERS = {'<', '>', ':', '/', '\\', '|', '?', '*', '(', ')'}
 
 separator = ","
 
@@ -50,7 +50,7 @@ def main():
                 parse_json(section)
                 for visual_container in section['visualContainers']:
                     parse_json(visual_container)
-                section_name = section['displayName'].translate({ord(x): '_' for x in ILLEGAL_PATH_CHARACTERS})
+                section_name = section['displayName'].translate({ord(x): ' ' for x in ILLEGAL_PATH_CHARACTERS})
                 output_path = json_dir_path + '/' + section_name + '.json'
                 with open(output_path, "w") as f:
                     json.dump(section, f, indent=4)
