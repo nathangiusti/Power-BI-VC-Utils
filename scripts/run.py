@@ -6,7 +6,7 @@ import os.path
 # The characters are illegal in file names and will be replaced with _
 ILLEGAL_PATH_CHARACTERS = {'<', '>', ':', '/', '\\', '|', '?', '*', ' ', '(', ')'}
 
-separator = ","
+
 
 
 def parse_json(json_struct):
@@ -17,7 +17,7 @@ def parse_json(json_struct):
 
 
 def main():
-
+    separator = sys.argv[2]
     file_list = sys.argv[1].split(separator)
     for file in file_list:
         # For JSON files, just read and pretty print
