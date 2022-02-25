@@ -28,7 +28,7 @@ def main():
                 f.write(json_str)
             print('Pretty Printed {}'.format(file))
 
-        if file.endswith('.pbix') and os.path.exists(file):
+        if file.endswith('.pbix') or file.endswith('.pbit') and os.path.exists(file):
             # Get the PBIX file name to use as the directory name
             json_dir_path = file[:-5]
 
