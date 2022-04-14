@@ -4,7 +4,9 @@ import sys
 import os.path
 
 # The characters are illegal in file names and will be replaced with _
-ILLEGAL_PATH_CHARACTERS = {'<', '>', ':', '/', '\\', '|', '?', '*', ' ', '(', ')'}
+ILLEGAL_PATH_CHARACTERS = {'<', '>', ':', '/', '\\', '|', '?', '*', '(', ')'}
+
+
 
 
 def parse_json(json_struct):
@@ -15,7 +17,9 @@ def parse_json(json_struct):
 
 
 def main():
-    for file in sys.argv:
+    separator = sys.argv[2]
+    file_list = sys.argv[1].split(separator)
+    for file in file_list:
         # For JSON files, just read and pretty print
         if file.endswith('.json') and os.path.exists(file):
             with open(file, 'r', encoding='utf-8-sig') as f:
@@ -24,7 +28,7 @@ def main():
                 f.write(json_str)
             print('Pretty Printed {}'.format(file))
 
-        if file.endswith('.pbix') and os.path.exists(file):
+        if (file.endswith('.pbix') or file.endswith('.pbit')) and os.path.exists(file):
             # Get the PBIX file name to use as the directory name
             json_dir_path = file[:-5]
 
@@ -46,7 +50,7 @@ def main():
                 parse_json(section)
                 for visual_container in section['visualContainers']:
                     parse_json(visual_container)
-                section_name = section['displayName'].translate({ord(x): '_' for x in ILLEGAL_PATH_CHARACTERS})
+                section_name = section['displayName'].translate({ord(x): ' ' for x in ILLEGAL_PATH_CHARACTERS})
                 output_path = json_dir_path + '/' + section_name + '.json'
                 with open(output_path, "w") as f:
                     json.dump(section, f, indent=4)

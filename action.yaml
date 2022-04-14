@@ -5,9 +5,12 @@ inputs:
   files:
     description: 'Assets to format'
     required: true
+  separator:
+    description: 'The character used to seperate file names'
+    required: true
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
     - ${{ inputs.files }}
-  
+    - ${{ inputs.separator }}

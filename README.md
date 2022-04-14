@@ -1,5 +1,8 @@
 # Power-BI-VC-Utils
 
+NOTE: It is easier to use the following composite action to set up your GitHub/PowerBI integration:
+https://github.com/nathangiusti/PBIX-Deserializer
+
 GitHub Action for pretty printing Power BI Dataflow JSON and PBIX report JSON. 
 
 Takes in a list of files. 
