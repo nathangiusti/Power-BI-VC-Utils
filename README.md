@@ -1,7 +1,4 @@
-# Power-BI-VC-Utils
-
-NOTE: It is easier to use the following composite action to set up your GitHub/PowerBI integration:
-https://github.com/nathangiusti/PBIX-Deserializer
+# Deserialize PBIX Files
 
 GitHub Action for pretty printing Power BI Dataflow JSON and PBIX report JSON. 
 
@@ -22,25 +19,35 @@ For a file "ExampleReport.pbix" with "Section 1", "Section 2", and "Section 3" w
 
 Takes as input files, a space delineated list of json and PBIX files to iterate over. 
 
-Example use:
-	
-~~~~
+# Usage
+
+```yaml
 name: Reformat Power BI Assets
 on: [pull_request]
 jobs:
   Reformat-Power-BI-Assets:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          ref: ${{ github.head_ref }}
-      - id: files
-        uses: jitterbit/get-changed-files@v1
-      - name: Power BI VC Utils
-        uses: nathangiusti/Power-BI-VC-Utils@v1.2
-        with:
-          files: ${{ steps.files.outputs.all }}
-      - uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: Reformatted files for VC
-~~~~
+  steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: Get changed files
+      id: changed-files
+      uses: tj-actions/changed-files@v19
+      with:
+        separator: ","
+        quotepath: true
+    - name: Power BI VC Utils
+      uses: ab-inbev-labs/powerbi-actions/deserialize-pbix@v1.0
+      with:
+        files: ${{ steps.changed-files.outputs.all_modified_files }}
+        separator: ","
+    - uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: Reformatted files for VC
+```
+
+|               Input               |          type          | required |        default        |                                                                                                                                                          description                                                                                                                                                          |
+|:---------------------------------:|:----------------------:|:--------:|:---------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| files | `string` | `true` | | List of files to process. Will only deploy files with .pbix ending. The rest will be ignored. |
+| separator | `string` | `false` | `","` | Character which separates file names. |

@@ -1,4 +1,3 @@
 #!/bin/sh
-pip install --upgrade pip
-pip install zipfile
-python /scripts/run.py "$1" $2
+python pip --no-cache-dir install zipfile
+python /scripts/deserialize_pbix.py "$1" $2

@@ -1,9 +1,9 @@
-name: 'Power BI VC Utils'
+name: 'Deserialize PBIX'
 description: 'Prepares Power BI assets for VC.'
-author: 'Nathan Giusti'
+author: 'NAZ BeerTech BI Engineering'
 inputs:
   files:
-    description: 'Assets to format'
+    description: 'List of files to format'
     required: true
   separator:
     description: 'The character used to seperate file names'
