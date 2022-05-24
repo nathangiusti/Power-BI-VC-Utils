@@ -38,7 +38,7 @@ jobs:
         separator: ","
         quotepath: true
     - name: Power BI VC Utils
-      uses: ab-inbev-labs/powerbi-actions/deserialize-pbix@v1.0
+      uses: nathangiusti/Power-BI-VC-Utils@v2.5
       with:
         files: ${{ steps.changed-files.outputs.all_modified_files }}
         separator: ","
