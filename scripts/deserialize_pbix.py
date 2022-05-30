@@ -20,14 +20,6 @@ def main():
     separator = sys.argv[2]
     file_list = sys.argv[1].split(separator)
     for file in file_list:
-        # For JSON files, just read and pretty print
-        if file.endswith('.json') and os.path.exists(file):
-            with open(file, 'r', encoding='utf-8-sig') as f:
-                json_str = json.dumps(json.load(f), indent=4)
-            with open(file, 'w') as f:
-                f.write(json_str)
-            print('Pretty Printed {}'.format(file))
-
         if (file.endswith('.pbix') or file.endswith('.pbit')) and os.path.exists(file):
             # Get the PBIX file name to use as the directory name
             json_dir_path = file[:-5]
